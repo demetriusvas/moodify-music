@@ -14,6 +14,7 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { Badge } from './ui/badge';
 import type { Mood } from '@/app/page';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from './ui/tooltip';
+import { cn } from '@/lib/utils';
 
 type PlaylistDisplayProps = {
   playlist: string[] | null;
@@ -26,7 +27,7 @@ export function PlaylistDisplay({ playlist, isLoading, mood }: PlaylistDisplayPr
     return <PlaylistSkeleton />;
   }
 
-  if (!playlist) {
+  if (!playlist || !mood) {
     return (
       <div className="flex flex-col items-center justify-center text-center p-10 border-2 border-dashed rounded-lg">
         <ListMusic className="h-12 w-12 text-muted-foreground" />
@@ -36,7 +37,7 @@ export function PlaylistDisplay({ playlist, isLoading, mood }: PlaylistDisplayPr
   }
 
   return (
-    <Card className="w-full animate-fade-in">
+    <Card className={cn("w-full animate-fade-in transition-colors", mood.playlistColor)}>
       <CardHeader>
         <div className="flex items-center gap-4">
           {mood && <span className="text-4xl">{mood.icon}</span>}
