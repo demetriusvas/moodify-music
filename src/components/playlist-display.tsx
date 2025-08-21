@@ -71,7 +71,7 @@ export function PlaylistDisplay({ playlist, isLoading, mood }: PlaylistDisplayPr
         </ol>
       </CardContent>
       <CardFooter className="flex flex-col sm:flex-row gap-2 justify-end">
-        <a href={authUrl}>
+        <a href={authUrl} target="_blank" rel="noopener noreferrer">
           <Button>
             Salvar no Spotify
           </Button>
