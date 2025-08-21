@@ -17,6 +17,10 @@ const AUTHORIZE_ENDPOINT = 'https://accounts.spotify.com/authorize';
  * Gera a URL para o usuário autorizar o aplicativo a acessar seus dados do Spotify.
  */
 export const getAuthorizationUrl = () => {
+    if (!client_id || !redirect_uri) {
+        throw new Error('As variáveis de ambiente do Spotify (SPOTIFY_CLIENT_ID, SPOTIFY_REDIRECT_URI) não estão configuradas.');
+    }
+
     const scopes = [
         'playlist-read-private',
         'playlist-modify-public',
@@ -24,9 +28,9 @@ export const getAuthorizationUrl = () => {
     ];
     
     const params = new URLSearchParams({
-        client_id: client_id!,
+        client_id: client_id,
         response_type: 'code',
-        redirect_uri: redirect_uri!,
+        redirect_uri: redirect_uri,
         scope: scopes.join(' '),
     });
 
@@ -38,6 +42,10 @@ export const getAuthorizationUrl = () => {
  * Este token não está associado a um usuário específico.
  */
 export const getAccessToken = async () => {
+  if (!client_id || !client_secret) {
+    throw new Error('As credenciais do Spotify (SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET) não estão configuradas no ambiente.');
+  }
+    
   const response = await fetch(TOKEN_ENDPOINT, {
     method: 'POST',
     headers: {
