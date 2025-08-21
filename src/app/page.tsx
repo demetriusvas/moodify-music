@@ -14,6 +14,7 @@ export type Mood = {
   name: string;
   icon: React.ElementType;
   color: string;
+  activeColor: string;
 };
 
 export default function Home() {
@@ -74,7 +75,7 @@ export default function Home() {
             </p>
           </div>
 
-          <MoodSelector onMoodSelect={handleMoodSelect} isLoading={isLoading} />
+          <MoodSelector onMoodSelect={handleMoodSelect} isLoading={isLoading} selectedMood={selectedMood} />
 
           <PlaylistDisplay
             playlist={playlist}
