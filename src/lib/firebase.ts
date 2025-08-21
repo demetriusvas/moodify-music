@@ -4,7 +4,7 @@ import { getAuth } from "firebase/auth";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyD7zhc8qOCN4Way6n2IkFmxv-dx9OEyLE4",
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
   authDomain: "moodify-music-19e02.firebaseapp.com",
   projectId: "moodify-music-19e02",
   storageBucket: "moodify-music-19e02.appspot.com",
