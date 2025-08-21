@@ -15,14 +15,14 @@ import { cn } from '@/lib/utils';
 import type { Mood } from '@/app/page';
 
 const moods: Mood[] = [
-  { name: 'Happy', icon: Smile },
-  { name: 'Sad', icon: Frown },
-  { name: 'Energetic', icon: Zap },
-  { name: 'Calm', icon: Coffee },
-  { name: 'Romantic', icon: Heart },
-  { name: 'Focused', icon: BrainCircuit },
-  { name: 'Party', icon: PartyPopper },
-  { name: 'Melancholic', icon: CloudRain },
+  { name: 'Happy', icon: Smile, color: 'hover:bg-yellow-200/50 dark:hover:bg-yellow-900/30' },
+  { name: 'Sad', icon: Frown, color: 'hover:bg-blue-200/50 dark:hover:bg-blue-900/30' },
+  { name: 'Energetic', icon: Zap, color: 'hover:bg-orange-200/50 dark:hover:bg-orange-900/30' },
+  { name: 'Calm', icon: Coffee, color: 'hover:bg-green-200/50 dark:hover:bg-green-900/30' },
+  { name: 'Romantic', icon: Heart, color: 'hover:bg-red-200/50 dark:hover:bg-red-900/30' },
+  { name: 'Focused', icon: BrainCircuit, color: 'hover:bg-purple-200/50 dark:hover:bg-purple-900/30' },
+  { name: 'Party', icon: PartyPopper, color: 'hover:bg-pink-200/50 dark:hover:bg-pink-900/30' },
+  { name: 'Melancholic', icon: CloudRain, color: 'hover:bg-gray-200/50 dark:hover:bg-gray-700/30' },
 ];
 
 type MoodSelectorProps = {
@@ -37,7 +37,10 @@ export function MoodSelector({ onMoodSelect, isLoading }: MoodSelectorProps) {
         <Button
           key={mood.name}
           variant="outline"
-          className="h-24 md:h-32 text-lg flex-col gap-2 transition-all duration-300 ease-in-out transform hover:scale-105 hover:bg-accent/80 focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background"
+          className={cn(
+            "h-24 md:h-32 text-lg flex-col gap-2 transition-all duration-300 ease-in-out transform hover:scale-105 focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background",
+            mood.color
+            )}
           onClick={() => onMoodSelect(mood)}
           disabled={isLoading}
           aria-label={`Generate playlist for ${mood.name} mood`}

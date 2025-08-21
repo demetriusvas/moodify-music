@@ -13,6 +13,7 @@ import { Loader2 } from 'lucide-react';
 export type Mood = {
   name: string;
   icon: React.ElementType;
+  color: string;
 };
 
 export default function Home() {
