@@ -53,8 +53,8 @@ export default function Home() {
     } else {
       toast({
         variant: 'destructive',
-        title: 'Error',
-        description: result.error || 'Failed to generate playlist.',
+        title: 'Erro',
+        description: result.error || 'Falha ao gerar a playlist.',
       });
       setPlaylist(null);
     }
@@ -68,10 +68,10 @@ export default function Home() {
         <div className="w-full max-w-4xl mx-auto flex flex-col gap-8 md:gap-12">
           <div className="text-center space-y-2">
             <h1 className="text-3xl md:text-5xl font-bold tracking-tighter text-primary">
-              What's your mood today?
+              Qual é o seu humor hoje?
             </h1>
             <p className="text-muted-foreground md:text-xl">
-              Select a mood to generate a personalized playlist just for you.
+              Selecione um humor para gerar uma playlist personalizada só para você.
             </p>
           </div>
 
@@ -86,7 +86,7 @@ export default function Home() {
       </main>
       <footer className="py-6 w-full flex items-center justify-center">
         <p className="text-xs text-muted-foreground">
-          Powered by Moodify Music
+          Desenvolvido por Moodify Music
         </p>
       </footer>
     </div>

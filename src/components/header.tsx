@@ -27,12 +27,12 @@ export function Header() {
     try {
       await logout();
       router.push('/login');
-      toast({ title: 'Logged out successfully' });
+      toast({ title: 'Logout efetuado com sucesso' });
     } catch (error) {
       toast({
         variant: 'destructive',
-        title: 'Logout failed',
-        description: 'An error occurred while logging out.',
+        title: 'Falha no logout',
+        description: 'Ocorreu um erro ao sair.',
       });
     }
   };
@@ -52,7 +52,7 @@ export function Header() {
               <DropdownMenuTrigger asChild>
                 <Button variant="ghost" className="relative h-8 w-8 rounded-full">
                   <Avatar className="h-8 w-8">
-                    <AvatarImage src={user.photoURL || ''} alt={user.displayName || 'User'} />
+                    <AvatarImage src={user.photoURL || ''} alt={user.displayName || 'Usuário'} />
                     <AvatarFallback>
                       {user.displayName ? user.displayName.charAt(0).toUpperCase() : <UserIcon size={16}/>}
                     </AvatarFallback>
@@ -60,24 +60,24 @@ export function Header() {
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
-                <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                <DropdownMenuLabel>Minha Conta</DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem asChild>
                   <Link href="/profile">
                     <UserIcon className="mr-2 h-4 w-4" />
-                    <span>Profile</span>
+                    <span>Perfil</span>
                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem onClick={handleLogout}>
                   <LogOut className="mr-2 h-4 w-4" />
-                  <span>Log out</span>
+                  <span>Sair</span>
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
           ) : (
             <Link href="/login">
               <Button variant="ghost" size="sm">
-                Login
+                Entrar
               </Button>
             </Link>
           )}

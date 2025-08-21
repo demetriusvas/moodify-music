@@ -14,12 +14,12 @@ import {ai} from '@/ai/config';
 import {z} from 'genkit';
 
 const GenerateMoodPlaylistInputSchema = z.object({
-  mood: z.string().describe('The mood for which to generate a playlist.'),
+  mood: z.string().describe('O humor para o qual gerar uma playlist.'),
 });
 export type GenerateMoodPlaylistInput = z.infer<typeof GenerateMoodPlaylistInputSchema>;
 
 const GenerateMoodPlaylistOutputSchema = z.object({
-  playlist: z.array(z.string()).describe('An array of song titles for the given mood.'),
+  playlist: z.array(z.string()).describe('Uma lista de títulos de músicas para o humor especificado.'),
 });
 export type GenerateMoodPlaylistOutput = z.infer<typeof GenerateMoodPlaylistOutputSchema>;
 
@@ -31,7 +31,7 @@ const generateMoodPlaylistPrompt = ai.definePrompt({
   name: 'generateMoodPlaylistPrompt',
   input: {schema: GenerateMoodPlaylistInputSchema},
   output: {schema: GenerateMoodPlaylistOutputSchema},
-  prompt: `You are a playlist curator. Generate a playlist of 20 songs that matches the following mood: {{{mood}}}. The playlist should only contain song titles, with each song title on a new line.`,
+  prompt: `Você é um curador de playlists. Gere uma playlist de 20 músicas que corresponda ao seguinte humor: {{{mood}}}. A playlist deve conter apenas os títulos das músicas, com cada título em uma nova linha.`,
 });
 
 const generateMoodPlaylistFlow = ai.defineFlow(

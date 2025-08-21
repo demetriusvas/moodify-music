@@ -30,7 +30,7 @@ export function PlaylistDisplay({ playlist, isLoading, mood }: PlaylistDisplayPr
     return (
       <div className="flex flex-col items-center justify-center text-center p-10 border-2 border-dashed rounded-lg">
         <ListMusic className="h-12 w-12 text-muted-foreground" />
-        <p className="mt-4 text-lg text-muted-foreground">Your playlist will appear here</p>
+        <p className="mt-4 text-lg text-muted-foreground">Sua playlist aparecerá aqui</p>
       </div>
     );
   }
@@ -42,10 +42,10 @@ export function PlaylistDisplay({ playlist, isLoading, mood }: PlaylistDisplayPr
           {mood && <span className="text-4xl">{mood.icon}</span>}
           <div>
             <CardTitle className="text-2xl md:text-3xl">
-              Your {mood?.name} Playlist
+              Sua Playlist {mood?.name}
             </CardTitle>
             <CardDescription>
-              20 songs curated just for you.
+              20 músicas selecionadas para você.
             </CardDescription>
           </div>
         </div>
@@ -68,21 +68,21 @@ export function PlaylistDisplay({ playlist, isLoading, mood }: PlaylistDisplayPr
           <Tooltip>
             <TooltipTrigger asChild>
               <Button variant="outline" disabled>
-                Save to Spotify
+                Salvar no Spotify
               </Button>
             </TooltipTrigger>
             <TooltipContent>
-              <p>Feature coming soon!</p>
+              <p>Funcionalidade em breve!</p>
             </TooltipContent>
           </Tooltip>
            <Tooltip>
             <TooltipTrigger asChild>
               <Button variant="outline" disabled>
-                Save to YouTube Music
+                Salvar no YouTube Music
               </Button>
             </TooltipTrigger>
             <TooltipContent>
-              <p>Feature coming soon!</p>
+              <p>Funcionalidade em breve!</p>
             </TooltipContent>
           </Tooltip>
         </TooltipProvider>

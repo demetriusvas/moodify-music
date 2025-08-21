@@ -5,14 +5,14 @@ import { cn } from '@/lib/utils';
 import type { Mood } from '@/app/page';
 
 const moods: Mood[] = [
-  { name: 'Happy', icon: '😊', color: 'bg-yellow-400/40 hover:bg-yellow-400/50 dark:bg-yellow-700/40 dark:hover:bg-yellow-700/50', activeColor: 'bg-yellow-400/60 dark:bg-yellow-700/60' },
-  { name: 'Sad', icon: '😢', color: 'bg-blue-400/40 hover:bg-blue-400/50 dark:bg-blue-700/40 dark:hover:bg-blue-700/50', activeColor: 'bg-blue-400/60 dark:bg-blue-700/60' },
-  { name: 'Energetic', icon: '⚡️', color: 'bg-orange-400/40 hover:bg-orange-400/50 dark:bg-orange-700/40 dark:hover:bg-orange-700/50', activeColor: 'bg-orange-400/60 dark:bg-orange-700/60' },
-  { name: 'Calm', icon: '😌', color: 'bg-green-400/40 hover:bg-green-400/50 dark:bg-green-700/40 dark:hover:bg-green-700/50', activeColor: 'bg-green-400/60 dark:bg-green-700/60' },
-  { name: 'Romantic', icon: '🥰', color: 'bg-red-400/40 hover:bg-red-400/50 dark:bg-red-700/40 dark:hover:bg-red-700/50', activeColor: 'bg-red-400/60 dark:bg-red-700/60' },
-  { name: 'Focused', icon: '🎯', color: 'bg-purple-400/40 hover:bg-purple-400/50 dark:bg-purple-700/40 dark:hover:bg-purple-700/50', activeColor: 'bg-purple-400/60 dark:bg-purple-700/60' },
-  { name: 'Party', icon: '🎉', color: 'bg-pink-400/40 hover:bg-pink-400/50 dark:bg-pink-700/40 dark:hover:bg-pink-700/50', activeColor: 'bg-pink-400/60 dark:bg-pink-700/60' },
-  { name: 'Melancholic', icon: '😔', color: 'bg-gray-400/40 hover:bg-gray-400/50 dark:bg-gray-600/40 dark:hover:bg-gray-600/50', activeColor: 'bg-gray-400/60 dark:bg-gray-600/60' },
+  { name: 'Feliz', icon: '😊', color: 'bg-yellow-400/80 hover:bg-yellow-400/90 dark:bg-yellow-700/80 dark:hover:bg-yellow-700/90', activeColor: 'bg-yellow-400 dark:bg-yellow-700' },
+  { name: 'Triste', icon: '😢', color: 'bg-blue-400/80 hover:bg-blue-400/90 dark:bg-blue-700/80 dark:hover:bg-blue-700/90', activeColor: 'bg-blue-400 dark:bg-blue-700' },
+  { name: 'Energético', icon: '⚡️', color: 'bg-orange-400/80 hover:bg-orange-400/90 dark:bg-orange-700/80 dark:hover:bg-orange-700/90', activeColor: 'bg-orange-400 dark:bg-orange-700' },
+  { name: 'Calmo', icon: '😌', color: 'bg-green-400/80 hover:bg-green-400/90 dark:bg-green-700/80 dark:hover:bg-green-700/90', activeColor: 'bg-green-400 dark:bg-green-700' },
+  { name: 'Romântico', icon: '🥰', color: 'bg-red-400/80 hover:bg-red-400/90 dark:bg-red-700/80 dark:hover:bg-red-700/90', activeColor: 'bg-red-400 dark:bg-red-700' },
+  { name: 'Focado', icon: '🎯', color: 'bg-purple-400/80 hover:bg-purple-400/90 dark:bg-purple-700/80 dark:hover:bg-purple-700/90', activeColor: 'bg-purple-400 dark:bg-purple-700' },
+  { name: 'Festa', icon: '🎉', color: 'bg-pink-400/80 hover:bg-pink-400/90 dark:bg-pink-700/80 dark:hover:bg-pink-700/90', activeColor: 'bg-pink-400 dark:bg-pink-700' },
+  { name: 'Melancólico', icon: '😔', color: 'bg-gray-400/80 hover:bg-gray-400/90 dark:bg-gray-600/80 dark:hover:bg-gray-600/90', activeColor: 'bg-gray-400 dark:bg-gray-600' },
 ];
 
 type MoodSelectorProps = {
@@ -37,7 +37,7 @@ export function MoodSelector({ onMoodSelect, isLoading, selectedMood }: MoodSele
                 )}
               onClick={() => onMoodSelect(mood)}
               disabled={isLoading}
-              aria-label={`Generate playlist for ${mood.name} mood`}
+              aria-label={`Gerar playlist para o humor ${mood.name}`}
             >
               <span className="text-4xl md:text-5xl">{mood.icon}</span>
               <span>{mood.name}</span>

@@ -10,7 +10,7 @@ const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
 
 export const metadata: Metadata = {
   title: 'Moodify Music',
-  description: 'Generate playlists based on your mood.',
+  description: 'Gere playlists com base no seu humor.',
 };
 
 export default function RootLayout({
@@ -19,7 +19,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="pt-BR" suppressHydrationWarning>
       <body
         className={cn(
           'min-h-screen bg-background font-sans antialiased',

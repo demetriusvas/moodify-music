@@ -30,8 +30,8 @@ import { Loader2 } from 'lucide-react';
 import { useState } from 'react';
 
 const formSchema = z.object({
-  email: z.string().email({ message: 'Please enter a valid email.' }),
-  password: z.string().min(1, { message: 'Password is required.' }),
+  email: z.string().email({ message: 'Por favor, insira um email válido.' }),
+  password: z.string().min(1, { message: 'A senha é obrigatória.' }),
 });
 
 export default function LoginPage() {
@@ -53,12 +53,12 @@ export default function LoginPage() {
     setIsLoading(true);
     try {
       await login(values.email, values.password);
-      toast({ title: 'Login successful!' });
+      toast({ title: 'Login bem-sucedido!' });
       router.push('/');
     } catch (error: any) {
       toast({
         variant: 'destructive',
-        title: 'Login failed',
+        title: 'Falha no login',
         description: error.message,
       });
     } finally {
@@ -70,12 +70,12 @@ export default function LoginPage() {
     setIsGoogleLoading(true);
     try {
       await loginWithGoogle();
-      toast({ title: 'Login successful!' });
+      toast({ title: 'Login bem-sucedido!' });
       router.push('/');
     } catch (error: any) {
        toast({
         variant: 'destructive',
-        title: 'Google login failed',
+        title: 'Falha no login com Google',
         description: error.message,
       });
     } finally {
@@ -94,7 +94,7 @@ export default function LoginPage() {
           <CardHeader className="space-y-1 text-center">
             <CardTitle className="text-2xl">Login</CardTitle>
             <CardDescription>
-              Enter your email below to login to your account
+              Digite seu email abaixo para entrar na sua conta
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -107,7 +107,7 @@ export default function LoginPage() {
                     <FormItem>
                       <FormLabel>Email</FormLabel>
                       <FormControl>
-                        <Input placeholder="m@example.com" {...field} />
+                        <Input placeholder="m@exemplo.com" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -119,12 +119,12 @@ export default function LoginPage() {
                   render={({ field }) => (
                     <FormItem>
                        <div className="flex items-center">
-                         <FormLabel>Password</FormLabel>
+                         <FormLabel>Senha</FormLabel>
                           <Link
                             href="#"
                             className="ml-auto inline-block text-sm underline"
                           >
-                            Forgot your password?
+                            Esqueceu sua senha?
                           </Link>
                         </div>
                       <FormControl>
@@ -136,7 +136,7 @@ export default function LoginPage() {
                 />
                 <Button type="submit" className="w-full" disabled={isLoading}>
                   {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                  Login
+                  Entrar
                 </Button>
               </form>
             </Form>
@@ -146,20 +146,20 @@ export default function LoginPage() {
               </div>
               <div className="relative flex justify-center text-xs uppercase">
                 <span className="bg-background px-2 text-muted-foreground">
-                  Or continue with
+                  Ou continue com
                 </span>
               </div>
             </div>
             <Button variant="outline" className="w-full" onClick={handleGoogleLogin} disabled={isGoogleLoading}>
                {isGoogleLoading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <Icons.google className="mr-2 h-4 w-4" />}
-               Login with Google
+               Entrar com Google
             </Button>
           </CardContent>
         </Card>
         <div className="text-center text-sm text-muted-foreground">
-          Don&apos;t have an account?{' '}
+          Não tem uma conta?{' '}
           <Link href="/signup" className="underline">
-            Sign up
+            Cadastre-se
           </Link>
         </div>
       </div>

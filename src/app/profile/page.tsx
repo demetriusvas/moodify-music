@@ -35,13 +35,13 @@ export default function ProfilePage() {
     try {
       await updateProfile(user, { displayName });
       toast({
-        title: "Profile updated",
-        description: "Your display name has been updated successfully.",
+        title: "Perfil atualizado",
+        description: "Seu nome de exibição foi atualizado com sucesso.",
       });
     } catch (error: any) {
       toast({
         variant: "destructive",
-        title: "Update failed",
+        title: "Falha na atualização",
         description: error.message,
       });
     } finally {
@@ -64,8 +64,8 @@ export default function ProfilePage() {
       <main className="flex-1 flex items-center justify-center p-4">
         <Card className="w-full max-w-md">
           <CardHeader>
-            <CardTitle className="text-2xl">Profile</CardTitle>
-            <CardDescription>Manage your account settings.</CardDescription>
+            <CardTitle className="text-2xl">Perfil</CardTitle>
+            <CardDescription>Gerencie as configurações da sua conta.</CardDescription>
           </CardHeader>
           <CardContent className="space-y-6">
             <div className="flex items-center space-x-4">
@@ -81,17 +81,17 @@ export default function ProfilePage() {
               </div>
             </div>
             <div className="space-y-2">
-              <Label htmlFor="displayName">Display Name</Label>
+              <Label htmlFor="displayName">Nome de Exibição</Label>
               <Input
                 id="displayName"
                 value={displayName}
                 onChange={(e) => setDisplayName(e.target.value)}
-                placeholder="Your display name"
+                placeholder="Seu nome de exibição"
               />
             </div>
             <Button onClick={handleSave} disabled={isSaving || displayName === user.displayName}>
               {isSaving && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-              Save Changes
+              Salvar Alterações
             </Button>
           </CardContent>
         </Card>

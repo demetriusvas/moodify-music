@@ -29,9 +29,9 @@ import { useState } from 'react';
 import { Loader2 } from 'lucide-react';
 
 const formSchema = z.object({
-  name: z.string().min(1, { message: 'Name is required.' }),
-  email: z.string().email({ message: 'Please enter a valid email.' }),
-  password: z.string().min(6, { message: 'Password must be at least 6 characters.' }),
+  name: z.string().min(1, { message: 'O nome é obrigatório.' }),
+  email: z.string().email({ message: 'Por favor, insira um email válido.' }),
+  password: z.string().min(6, { message: 'A senha deve ter pelo menos 6 caracteres.' }),
 });
 
 export default function SignupPage() {
@@ -54,12 +54,12 @@ export default function SignupPage() {
     setIsLoading(true);
     try {
       await signup(values.email, values.password, values.name);
-      toast({ title: 'Account created successfully!' });
+      toast({ title: 'Conta criada com sucesso!' });
       router.push('/');
     } catch (error: any) {
       toast({
         variant: 'destructive',
-        title: 'Signup failed',
+        title: 'Falha no cadastro',
         description: error.message,
       });
     } finally {
@@ -71,12 +71,12 @@ export default function SignupPage() {
     setIsGoogleLoading(true);
     try {
       await loginWithGoogle();
-      toast({ title: 'Login successful!' });
+      toast({ title: 'Login bem-sucedido!' });
       router.push('/');
     } catch (error: any) {
        toast({
         variant: 'destructive',
-        title: 'Google login failed',
+        title: 'Falha no login com Google',
         description: error.message,
       });
     } finally {
@@ -94,9 +94,9 @@ export default function SignupPage() {
         </div>
         <Card>
           <CardHeader className="space-y-1 text-center">
-            <CardTitle className="text-2xl">Create an account</CardTitle>
+            <CardTitle className="text-2xl">Crie uma conta</CardTitle>
             <CardDescription>
-              Enter your information to get started
+              Insira suas informações para começar
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -107,9 +107,9 @@ export default function SignupPage() {
                   name="name"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Name</FormLabel>
+                      <FormLabel>Nome</FormLabel>
                       <FormControl>
-                        <Input placeholder="Your Name" {...field} />
+                        <Input placeholder="Seu Nome" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -122,7 +122,7 @@ export default function SignupPage() {
                     <FormItem>
                       <FormLabel>Email</FormLabel>
                       <FormControl>
-                        <Input placeholder="m@example.com" {...field} />
+                        <Input placeholder="m@exemplo.com" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -133,7 +133,7 @@ export default function SignupPage() {
                   name="password"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Password</FormLabel>
+                      <FormLabel>Senha</FormLabel>
                       <FormControl>
                         <Input type="password" {...field} />
                       </FormControl>
@@ -143,7 +143,7 @@ export default function SignupPage() {
                 />
                 <Button type="submit" className="w-full" disabled={isLoading}>
                    {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                  Create Account
+                  Criar Conta
                 </Button>
               </form>
             </Form>
@@ -153,20 +153,20 @@ export default function SignupPage() {
               </div>
               <div className="relative flex justify-center text-xs uppercase">
                 <span className="bg-background px-2 text-muted-foreground">
-                  Or continue with
+                  Ou continue com
                 </span>
               </div>
             </div>
              <Button variant="outline" className="w-full" onClick={handleGoogleLogin} disabled={isGoogleLoading}>
                {isGoogleLoading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <Icons.google className="mr-2 h-4 w-4" />}
-               Sign up with Google
+               Cadastrar com Google
             </Button>
           </CardContent>
         </Card>
         <div className="text-center text-sm text-muted-foreground">
-          Already have an account?{' '}
+          Já tem uma conta?{' '}
           <Link href="/login" className="underline">
-            Login
+            Entrar
           </Link>
         </div>
       </div>
