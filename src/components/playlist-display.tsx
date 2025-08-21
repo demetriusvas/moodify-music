@@ -16,7 +16,6 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from './ui/t
 import { cn } from '@/lib/utils';
 import { Song } from '@/app/actions';
 import { getAuthorizationUrl } from '@/lib/spotify';
-import { useRouter } from 'next/navigation';
 import { useToast } from '@/hooks/use-toast';
 
 type PlaylistDisplayProps = {
@@ -25,10 +24,10 @@ type PlaylistDisplayProps = {
   mood: Mood | null;
 };
 
+// Verifica se as variáveis públicas do Spotify estão configuradas para o lado do cliente
 const spotifyConfigured = !!process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID && !!process.env.NEXT_PUBLIC_SPOTIFY_REDIRECT_URI;
 
 export function PlaylistDisplay({ playlist, isLoading, mood }: PlaylistDisplayProps) {
-  const router = useRouter();
   const { toast } = useToast();
 
   if (isLoading) {
@@ -47,7 +46,8 @@ export function PlaylistDisplay({ playlist, isLoading, mood }: PlaylistDisplayPr
   const handleSaveToSpotify = () => {
     try {
       const authUrl = getAuthorizationUrl();
-      window.open(authUrl, '_blank', 'noopener,noreferrer');
+       // Redireciona o usuário para a página de autorização do Spotify
+      window.location.href = authUrl;
     } catch (error: any) {
        toast({
         variant: 'destructive',

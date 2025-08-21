@@ -23,14 +23,9 @@ export async function GET(req: NextRequest) {
   try {
     const tokens = await getTokens(code);
     
-    // TODO: Salvar os tokens de forma segura (ex: em cookies httpOnly)
-    // Por enquanto, apenas logamos e redirecionamos
-    console.log('Tokens recebidos:', tokens);
-
     const response = NextResponse.redirect(homeUrl);
     
-    // Exemplo de como salvar o access_token em um cookie
-    // Você precisará do refresh_token para obter novos access_tokens no futuro
+    // Salva os tokens em cookies httpOnly seguros
     response.cookies.set('spotify_access_token', tokens.access_token, {
         httpOnly: true,
         secure: process.env.NODE_ENV === 'production',
