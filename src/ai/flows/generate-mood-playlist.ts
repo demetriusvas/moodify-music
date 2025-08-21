@@ -10,7 +10,7 @@
  * @exports GenerateMoodPlaylistOutput - The output type for the generateMoodPlaylist function.
  */
 
-import {ai} from '@/ai/genkit';
+import {ai} from '@/ai/config';
 import {z} from 'genkit';
 
 const GenerateMoodPlaylistInputSchema = z.object({
