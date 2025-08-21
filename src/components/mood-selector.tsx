@@ -15,14 +15,14 @@ import { cn } from '@/lib/utils';
 import type { Mood } from '@/app/page';
 
 const moods: Mood[] = [
-  { name: 'Happy', icon: Smile, color: 'hover:bg-yellow-200/50 dark:hover:bg-yellow-900/30', activeColor: 'bg-yellow-200/50 dark:bg-yellow-900/30' },
-  { name: 'Sad', icon: Frown, color: 'hover:bg-blue-200/50 dark:hover:bg-blue-900/30', activeColor: 'bg-blue-200/50 dark:bg-blue-900/30' },
-  { name: 'Energetic', icon: Zap, color: 'hover:bg-orange-200/50 dark:hover:bg-orange-900/30', activeColor: 'bg-orange-200/50 dark:bg-orange-900/30' },
-  { name: 'Calm', icon: Coffee, color: 'hover:bg-green-200/50 dark:hover:bg-green-900/30', activeColor: 'bg-green-200/50 dark:bg-green-900/30' },
-  { name: 'Romantic', icon: Heart, color: 'hover:bg-red-200/50 dark:hover:bg-red-900/30', activeColor: 'bg-red-200/50 dark:bg-red-900/30' },
-  { name: 'Focused', icon: BrainCircuit, color: 'hover:bg-purple-200/50 dark:hover:bg-purple-900/30', activeColor: 'bg-purple-200/50 dark:bg-purple-900/30' },
-  { name: 'Party', icon: PartyPopper, color: 'hover:bg-pink-200/50 dark:hover:bg-pink-900/30', activeColor: 'bg-pink-200/50 dark:bg-pink-900/30' },
-  { name: 'Melancholic', icon: CloudRain, color: 'hover:bg-gray-200/50 dark:hover:bg-gray-700/30', activeColor: 'bg-gray-200/50 dark:bg-gray-700/30' },
+  { name: 'Happy', icon: Smile, color: 'hover:bg-yellow-400/50 dark:hover:bg-yellow-700/40', activeColor: 'bg-yellow-400/50 dark:bg-yellow-700/40' },
+  { name: 'Sad', icon: Frown, color: 'hover:bg-blue-400/50 dark:hover:bg-blue-700/40', activeColor: 'bg-blue-400/50 dark:bg-blue-700/40' },
+  { name: 'Energetic', icon: Zap, color: 'hover:bg-orange-400/50 dark:hover:bg-orange-700/40', activeColor: 'bg-orange-400/50 dark:bg-orange-700/40' },
+  { name: 'Calm', icon: Coffee, color: 'hover:bg-green-400/50 dark:hover:bg-green-700/40', activeColor: 'bg-green-400/50 dark:bg-green-700/40' },
+  { name: 'Romantic', icon: Heart, color: 'hover:bg-red-400/50 dark:hover:bg-red-700/40', activeColor: 'bg-red-400/50 dark:bg-red-700/40' },
+  { name: 'Focused', icon: BrainCircuit, color: 'hover:bg-purple-400/50 dark:hover:bg-purple-700/40', activeColor: 'bg-purple-400/50 dark:bg-purple-700/40' },
+  { name: 'Party', icon: PartyPopper, color: 'hover:bg-pink-400/50 dark:hover:bg-pink-700/40', activeColor: 'bg-pink-400/50 dark:bg-pink-700/40' },
+  { name: 'Melancholic', icon: CloudRain, color: 'hover:bg-gray-400/50 dark:hover:bg-gray-600/40', activeColor: 'bg-gray-400/50 dark:bg-gray-600/40' },
 ];
 
 type MoodSelectorProps = {
