@@ -8,7 +8,6 @@ const client_id = process.env.SPOTIFY_CLIENT_ID;
 const client_secret = process.env.SPOTIFY_CLIENT_SECRET;
 const redirect_uri = process.env.SPOTIFY_REDIRECT_URI;
 
-const basic = Buffer.from(`${client_id}:${client_secret}`).toString('base64');
 const TOKEN_ENDPOINT = `https://accounts.spotify.com/api/token`;
 const SEARCH_ENDPOINT = `https://api.spotify.com/v1/search`;
 const AUTHORIZE_ENDPOINT = 'https://accounts.spotify.com/authorize';
@@ -44,6 +43,7 @@ export const getTokens = async (code: string) => {
   if (!client_id || !client_secret || !redirect_uri) {
     throw new Error('As credenciais do Spotify não estão configuradas no ambiente.');
   }
+  const basic = Buffer.from(`${client_id}:${client_secret}`).toString('base64');
 
   const response = await fetch(TOKEN_ENDPOINT, {
     method: 'POST',
@@ -76,6 +76,8 @@ export const getAccessToken = async () => {
   if (!client_id || !client_secret) {
     throw new Error('As credenciais do Spotify (SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET) não estão configuradas no ambiente.');
   }
+  
+  const basic = Buffer.from(`${client_id}:${client_secret}`).toString('base64');
     
   const response = await fetch(TOKEN_ENDPOINT, {
     method: 'POST',
