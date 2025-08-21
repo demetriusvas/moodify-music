@@ -1,16 +1,37 @@
 /**
  * @fileoverview Funções para interagir com a API do Spotify.
  */
-'use server';
 
 import { Buffer } from 'buffer';
 
 const client_id = process.env.SPOTIFY_CLIENT_ID;
 const client_secret = process.env.SPOTIFY_CLIENT_SECRET;
+const redirect_uri = process.env.SPOTIFY_REDIRECT_URI;
 
 const basic = Buffer.from(`${client_id}:${client_secret}`).toString('base64');
 const TOKEN_ENDPOINT = `https://accounts.spotify.com/api/token`;
 const SEARCH_ENDPOINT = `https://api.spotify.com/v1/search`;
+const AUTHORIZE_ENDPOINT = 'https://accounts.spotify.com/authorize';
+
+/**
+ * Gera a URL para o usuário autorizar o aplicativo a acessar seus dados do Spotify.
+ */
+export const getAuthorizationUrl = () => {
+    const scopes = [
+        'playlist-read-private',
+        'playlist-modify-public',
+        'playlist-modify-private',
+    ];
+    
+    const params = new URLSearchParams({
+        client_id: client_id!,
+        response_type: 'code',
+        redirect_uri: redirect_uri!,
+        scope: scopes.join(' '),
+    });
+
+    return `${AUTHORIZE_ENDPOINT}?${params.toString()}`;
+}
 
 /**
  * Obtém um token de acesso da API do Spotify usando o fluxo de credenciais do cliente.

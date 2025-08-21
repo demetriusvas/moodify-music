@@ -9,13 +9,13 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Music, ListMusic, User } from 'lucide-react';
+import { Music, ListMusic } from 'lucide-react';
 import { Skeleton } from '@/components/ui/skeleton';
-import { Badge } from './ui/badge';
 import type { Mood } from '@/app/page';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from './ui/tooltip';
 import { cn } from '@/lib/utils';
 import { Song } from '@/app/actions';
+import { getAuthorizationUrl } from '@/lib/spotify';
 
 type PlaylistDisplayProps = {
   playlist: Song[] | null;
@@ -36,6 +36,8 @@ export function PlaylistDisplay({ playlist, isLoading, mood }: PlaylistDisplayPr
       </div>
     );
   }
+
+  const authUrl = getAuthorizationUrl();
 
   return (
     <Card className={cn("w-full animate-fade-in transition-colors", mood.playlistColor)}>
@@ -69,17 +71,12 @@ export function PlaylistDisplay({ playlist, isLoading, mood }: PlaylistDisplayPr
         </ol>
       </CardContent>
       <CardFooter className="flex flex-col sm:flex-row gap-2 justify-end">
+        <a href={authUrl}>
+          <Button>
+            Salvar no Spotify
+          </Button>
+        </a>
         <TooltipProvider>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <Button variant="outline" disabled>
-                Salvar no Spotify
-              </Button>
-            </TooltipTrigger>
-            <TooltipContent>
-              <p>Funcionalidade em breve!</p>
-            </TooltipContent>
-          </Tooltip>
            <Tooltip>
             <TooltipTrigger asChild>
               <Button variant="outline" disabled>
