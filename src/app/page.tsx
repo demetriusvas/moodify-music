@@ -9,6 +9,7 @@ import { PlaylistDisplay } from '@/components/playlist-display';
 import { getPlaylistForMood } from './actions';
 import { useToast } from '@/hooks/use-toast';
 import { Loader2 } from 'lucide-react';
+import { Song } from './actions';
 
 export type Mood = {
   name: string;
@@ -22,7 +23,7 @@ export default function Home() {
   const { user, loading: authLoading } = useAuth();
   const router = useRouter();
   const [selectedMood, setSelectedMood] = useState<Mood | null>(null);
-  const [playlist, setPlaylist] = useState<string[] | null>(null);
+  const [playlist, setPlaylist] = useState<Song[] | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
 

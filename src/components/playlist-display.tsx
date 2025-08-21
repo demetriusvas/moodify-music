@@ -9,15 +9,16 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Music, ListMusic } from 'lucide-react';
+import { Music, ListMusic, User } from 'lucide-react';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Badge } from './ui/badge';
 import type { Mood } from '@/app/page';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from './ui/tooltip';
 import { cn } from '@/lib/utils';
+import { Song } from '@/app/actions';
 
 type PlaylistDisplayProps = {
-  playlist: string[] | null;
+  playlist: Song[] | null;
   isLoading: boolean;
   mood: Mood | null;
 };
@@ -53,13 +54,16 @@ export function PlaylistDisplay({ playlist, isLoading, mood }: PlaylistDisplayPr
       </CardHeader>
       <CardContent>
         <ol className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-3">
-          {playlist.map((song, index) => (
+          {playlist.map((item, index) => (
             <li
               key={index}
-              className="flex items-center gap-3 text-sm transition-colors hover:text-primary"
+              className="flex items-start gap-3 text-sm transition-colors group"
             >
-              <Music className="h-4 w-4 text-muted-foreground" />
-              <span className="font-medium">{song}</span>
+              <Music className="h-4 w-4 text-muted-foreground mt-1" />
+              <div className="flex flex-col">
+                <span className="font-medium group-hover:text-primary">{item.song}</span>
+                <span className="text-muted-foreground text-xs">{item.artist}</span>
+              </div>
             </li>
           ))}
         </ol>
@@ -106,10 +110,13 @@ function PlaylistSkeleton() {
       </CardHeader>
       <CardContent>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
-          {Array.from({ length: 10 }).map((_, i) => (
+          {Array.from({ length: 20 }).map((_, i) => (
             <div key={i} className="flex items-center gap-3">
-              <Skeleton className="h-5 w-5" />
-              <Skeleton className="h-5 w-full max-w-sm" />
+              <Skeleton className="h-5 w-5 rounded-full" />
+              <div className="w-full space-y-2">
+                <Skeleton className="h-4 w-3/4" />
+                 <Skeleton className="h-3 w-1/2" />
+              </div>
             </div>
           ))}
         </div>

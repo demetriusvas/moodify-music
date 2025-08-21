@@ -18,8 +18,13 @@ const GenerateMoodPlaylistInputSchema = z.object({
 });
 export type GenerateMoodPlaylistInput = z.infer<typeof GenerateMoodPlaylistInputSchema>;
 
+const SongSchema = z.object({
+  song: z.string().describe("O título da música."),
+  artist: z.string().describe("O artista da música."),
+});
+
 const GenerateMoodPlaylistOutputSchema = z.object({
-  playlist: z.array(z.string()).describe('Uma lista de títulos de músicas para o humor especificado.'),
+  playlist: z.array(SongSchema).describe('Uma lista de 20 músicas, cada uma com título e artista, para o humor especificado.'),
 });
 export type GenerateMoodPlaylistOutput = z.infer<typeof GenerateMoodPlaylistOutputSchema>;
 
@@ -31,7 +36,7 @@ const generateMoodPlaylistPrompt = ai.definePrompt({
   name: 'generateMoodPlaylistPrompt',
   input: {schema: GenerateMoodPlaylistInputSchema},
   output: {schema: GenerateMoodPlaylistOutputSchema},
-  prompt: `Você é um curador de playlists. Gere uma playlist de 20 músicas que corresponda ao seguinte humor: {{{mood}}}. A playlist deve conter apenas os títulos das músicas, com cada título em uma nova linha.`,
+  prompt: `Você é um curador de playlists. Gere uma playlist de 20 músicas que corresponda ao seguinte humor: {{{mood}}}. A playlist deve conter o título da música e o artista.`,
 });
 
 const generateMoodPlaylistFlow = ai.defineFlow(

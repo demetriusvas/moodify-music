@@ -2,6 +2,11 @@
 
 import { generateMoodPlaylist } from '@/ai/flows/generate-mood-playlist';
 
+export type Song = {
+  song: string;
+  artist: string;
+}
+
 export async function getPlaylistForMood(mood: string) {
   try {
     const result = await generateMoodPlaylist({ mood });
