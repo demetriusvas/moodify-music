@@ -39,7 +39,7 @@ export function PlaylistDisplay({ playlist, isLoading, mood }: PlaylistDisplayPr
     <Card className="w-full animate-fade-in">
       <CardHeader>
         <div className="flex items-center gap-4">
-          {mood && <mood.icon className="h-10 w-10 text-primary" />}
+          {mood && <span className="text-4xl">{mood.icon}</span>}
           <div>
             <CardTitle className="text-2xl md:text-3xl">
               Your {mood?.name} Playlist

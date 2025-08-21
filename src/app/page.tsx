@@ -12,7 +12,7 @@ import { Loader2 } from 'lucide-react';
 
 export type Mood = {
   name: string;
-  icon: React.ElementType;
+  icon: string; // Changed from React.ElementType to string for emoji
   color: string;
   activeColor: string;
 };
