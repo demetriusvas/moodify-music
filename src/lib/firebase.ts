@@ -7,7 +7,7 @@ const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
   authDomain: "moodify-music-19e02.firebaseapp.com",
   projectId: "moodify-music-19e02",
-  storageBucket: "moodify-music-19e02.appspot.com",
+  storageBucket: "moodify-music-19e02.firebasestorage.app",
   messagingSenderId: "622122886219",
   appId: "1:622122886219:web:6d2c65c4bd8e94bcaf59ce"
 };
