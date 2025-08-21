@@ -32,8 +32,8 @@ export function MoodSelector({ onMoodSelect, isLoading, selectedMood }: MoodSele
               variant="outline"
               className={cn(
                 "h-24 md:h-32 text-lg flex-col gap-2 transition-all duration-300 ease-in-out transform focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background",
-                "hover:scale-105",
-                isActive ? mood.activeColor : mood.color
+                isActive ? mood.activeColor : mood.color,
+                !isActive && "hover:scale-105"
                 )}
               onClick={() => onMoodSelect(mood)}
               disabled={isLoading}
