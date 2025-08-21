@@ -35,8 +35,11 @@ export async function getPlaylistForMood(mood: string) {
 
 
     return { success: true, playlist: result.playlist };
-  } catch (error) {
+  } catch (error: any) {
     console.error('Erro ao gerar playlist na ação do servidor:', error);
+    if (error.message.includes('variáveis de ambiente')) {
+      return { success: false, error: 'A integração com o Spotify não está configurada corretamente.' };
+    }
     return { success: false, error: 'Não foi possível gerar uma playlist para este humor. Por favor, tente outro.' };
   }
 }

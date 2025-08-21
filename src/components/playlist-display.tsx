@@ -16,6 +16,8 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from './ui/t
 import { cn } from '@/lib/utils';
 import { Song } from '@/app/actions';
 import { getAuthorizationUrl } from '@/lib/spotify';
+import { useRouter } from 'next/navigation';
+import { useToast } from '@/hooks/use-toast';
 
 type PlaylistDisplayProps = {
   playlist: Song[] | null;
@@ -23,7 +25,12 @@ type PlaylistDisplayProps = {
   mood: Mood | null;
 };
 
+const spotifyConfigured = !!process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID && !!process.env.NEXT_PUBLIC_SPOTIFY_REDIRECT_URI;
+
 export function PlaylistDisplay({ playlist, isLoading, mood }: PlaylistDisplayProps) {
+  const router = useRouter();
+  const { toast } = useToast();
+
   if (isLoading) {
     return <PlaylistSkeleton />;
   }
@@ -36,8 +43,19 @@ export function PlaylistDisplay({ playlist, isLoading, mood }: PlaylistDisplayPr
       </div>
     );
   }
-
-  const authUrl = getAuthorizationUrl();
+  
+  const handleSaveToSpotify = () => {
+    try {
+      const authUrl = getAuthorizationUrl();
+      window.open(authUrl, '_blank', 'noopener,noreferrer');
+    } catch (error: any) {
+       toast({
+        variant: 'destructive',
+        title: 'Erro de Configuração',
+        description: error.message,
+      });
+    }
+  }
 
   return (
     <Card className={cn("w-full animate-fade-in transition-colors", mood.playlistColor)}>
@@ -71,11 +89,23 @@ export function PlaylistDisplay({ playlist, isLoading, mood }: PlaylistDisplayPr
         </ol>
       </CardContent>
       <CardFooter className="flex flex-col sm:flex-row gap-2 justify-end">
-        <a href={authUrl} target="_blank" rel="noopener noreferrer">
-          <Button>
-            Salvar no Spotify
-          </Button>
-        </a>
+        <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <div tabIndex={0} className={cn(!spotifyConfigured && "cursor-not-allowed")}>
+                    <Button onClick={handleSaveToSpotify} disabled={!spotifyConfigured}>
+                        Salvar no Spotify
+                    </Button>
+                </div>
+              </TooltipTrigger>
+              {!spotifyConfigured && (
+                 <TooltipContent>
+                    <p>A integração com o Spotify não está configurada. Verifique as variáveis de ambiente.</p>
+                 </TooltipContent>
+              )}
+            </Tooltip>
+        </TooltipProvider>
+
         <TooltipProvider>
            <Tooltip>
             <TooltipTrigger asChild>
