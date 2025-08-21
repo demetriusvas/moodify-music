@@ -38,6 +38,37 @@ export const getAuthorizationUrl = () => {
 }
 
 /**
+ * Troca um código de autorização por tokens de acesso e de atualização.
+ */
+export const getTokens = async (code: string) => {
+  if (!client_id || !client_secret || !redirect_uri) {
+    throw new Error('As credenciais do Spotify não estão configuradas no ambiente.');
+  }
+
+  const response = await fetch(TOKEN_ENDPOINT, {
+    method: 'POST',
+    headers: {
+      Authorization: `Basic ${basic}`,
+      'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    body: new URLSearchParams({
+      grant_type: 'authorization_code',
+      code: code,
+      redirect_uri: redirect_uri,
+    }),
+  });
+
+  if (!response.ok) {
+    const error = await response.json();
+    console.error('Falha ao obter tokens do Spotify:', error);
+    throw new Error('Falha ao autenticar com o Spotify.');
+  }
+
+  return response.json();
+};
+
+
+/**
  * Obtém um token de acesso da API do Spotify usando o fluxo de credenciais do cliente.
  * Este token não está associado a um usuário específico.
  */
