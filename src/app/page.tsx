@@ -1,11 +1,14 @@
 "use client";
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { useAuth } from '@/hooks/use-auth';
 import { Header } from '@/components/header';
 import { MoodSelector } from '@/components/mood-selector';
 import { PlaylistDisplay } from '@/components/playlist-display';
 import { getPlaylistForMood } from './actions';
 import { useToast } from '@/hooks/use-toast';
+import { Loader2 } from 'lucide-react';
 
 export type Mood = {
   name: string;
@@ -13,10 +16,26 @@ export type Mood = {
 };
 
 export default function Home() {
+  const { user, loading: authLoading } = useAuth();
+  const router = useRouter();
   const [selectedMood, setSelectedMood] = useState<Mood | null>(null);
   const [playlist, setPlaylist] = useState<string[] | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
+
+  useEffect(() => {
+    if (!authLoading && !user) {
+      router.push('/login');
+    }
+  }, [user, authLoading, router]);
+
+  if (authLoading || !user) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <Loader2 className="h-12 w-12 animate-spin text-primary" />
+      </div>
+    );
+  }
 
   const handleMoodSelect = async (mood: Mood) => {
     if (isLoading) return;
