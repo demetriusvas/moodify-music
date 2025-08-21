@@ -4,7 +4,7 @@
 
 import { Buffer } from 'buffer';
 
-const client_id = process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID;
+const client_id = process.env.SPOTIFY_CLIENT_ID;
 const client_secret = process.env.SPOTIFY_CLIENT_SECRET;
 const redirect_uri = process.env.NEXT_PUBLIC_SPOTIFY_REDIRECT_URI;
 
@@ -17,8 +17,8 @@ const AUTHORIZE_ENDPOINT = 'https://accounts.spotify.com/authorize';
  * Gera a URL para o usuário autorizar o aplicativo a acessar seus dados do Spotify.
  */
 export const getAuthorizationUrl = () => {
-    if (!client_id || !redirect_uri) {
-        throw new Error('As variáveis de ambiente do Spotify (SPOTIFY_CLIENT_ID, SPOTIFY_REDIRECT_URI) não estão configuradas.');
+    if (!process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID || !process.env.NEXT_PUBLIC_SPOTIFY_REDIRECT_URI) {
+        throw new Error('As variáveis de ambiente do Spotify (NEXT_PUBLIC_SPOTIFY_CLIENT_ID, NEXT_PUBLIC_SPOTIFY_REDIRECT_URI) não estão configuradas.');
     }
 
     const scopes = [
@@ -28,9 +28,9 @@ export const getAuthorizationUrl = () => {
     ];
     
     const params = new URLSearchParams({
-        client_id: client_id,
+        client_id: process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID,
         response_type: 'code',
-        redirect_uri: redirect_uri,
+        redirect_uri: process.env.NEXT_PUBLIC_SPOTIFY_REDIRECT_URI,
         scope: scopes.join(' '),
     });
 
